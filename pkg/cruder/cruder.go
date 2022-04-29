@@ -61,3 +61,13 @@ func AnyTypeUint32(v Any) (uint32, error) {
 	}
 	return 0, fmt.Errorf("invalid value type: %v (uint32)", reflect.TypeOf(v))
 }
+
+func AnyTypeUUID(v Any) (uuid.UUID, error) {
+	if _, ok := v.(uuid.UUID); ok {
+		return v.(uuid.UUID), nil
+	}
+	if _, ok := v.(string); !ok {
+		return uuid.UUID{}, fmt.Errorf("invalid value type: %v (uuid)", reflect.TypeOf(v))
+	}
+	return uuid.Parse(v.(string))
+}
