@@ -49,3 +49,15 @@ func AnyTypeInt32(v Any) (int32, error) {
 	}
 	return -1, fmt.Errorf("invalid value type: %v (int32)", reflect.TypeOf(v))
 }
+
+func AnyTypeUint32(v Any) (uint32, error) {
+	switch v.(type) {
+	case uint32:
+		return v.(uint32), nil
+	case int32:
+		return uint32(v.(int32)), nil
+	case int:
+		return uint32(v.(int)), nil
+	}
+	return 0, fmt.Errorf("invalid value type: %v (uint32)", reflect.TypeOf(v))
+}
