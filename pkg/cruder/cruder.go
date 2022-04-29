@@ -8,14 +8,14 @@ import (
 type Any interface{}
 
 const (
-	EQ   = 1
-	GT   = 2
-	LT   = 3
-	LIKE = 4
+	EQ   = "eq"
+	GT   = "gt"
+	LT   = "lt"
+	LIKE = "like"
 )
 
 type Cond struct {
-	Op  uint32
+	Op  string
 	Val Any
 }
 
