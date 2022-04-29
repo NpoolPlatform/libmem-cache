@@ -47,5 +47,5 @@ func AnyTypeInt32(v Any) (int32, error) {
 	case int:
 		return int32(v.(int)), nil
 	}
-	return -1, fmt.Errorf("invalid value type: %v", reflect.TypeOf(v))
+	return -1, fmt.Errorf("invalid value type: %v (int32)", reflect.TypeOf(v))
 }
