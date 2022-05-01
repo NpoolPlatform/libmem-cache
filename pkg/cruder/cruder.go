@@ -36,6 +36,17 @@ func (f Fields) WithField(field string, val Any) Fields {
 	return f
 }
 
+type FilterFields map[string]*structpb.Value
+
+func NewFilterFields() FilterFields {
+	return map[string]*structpb.Value{}
+}
+
+func (f FilterFields) WithField(field string, val *structpb.Value) FilterFields {
+	f[field] = val
+	return f
+}
+
 type Conds map[string]*Cond
 
 func NewConds() Conds {
