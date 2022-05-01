@@ -101,6 +101,8 @@ func AnyTypeInt32(v Any) (int32, error) {
 		return v.(int32), nil
 	case int:
 		return int32(v.(int)), nil
+	case float64:
+		return int32(v.(float64)), nil
 	}
 	return -1, fmt.Errorf("invalid value type: %v (int32)", reflect.TypeOf(v))
 }
@@ -113,6 +115,8 @@ func AnyTypeUint32(v Any) (uint32, error) {
 		return uint32(v.(int32)), nil
 	case int:
 		return uint32(v.(int)), nil
+	case float64:
+		return uint32(v.(float64)), nil
 	}
 	return 0, fmt.Errorf("invalid value type: %v (uint32)", reflect.TypeOf(v))
 }
