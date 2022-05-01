@@ -6,6 +6,9 @@ import (
 	"reflect"
 
 	"github.com/google/uuid"
+
+	npool "github.com/NpoolPlatform/message/npool"
+	"google.golang.org/protobuf/types/known/structpb"
 )
 
 type Any interface{}
@@ -41,6 +44,20 @@ func NewConds() Conds {
 
 func (c Conds) WithCond(field string, op string, val Any) Conds {
 	c[field] = &Cond{
+		Op:  op,
+		Val: val,
+	}
+	return c
+}
+
+type FilterConds map[string]*npool.FilterCond
+
+func NewFilterConds() FilterConds {
+	return map[string]*npool.FilterCond{}
+}
+
+func (c FilterConds) WithCond(filed string, op string, val *structpb.Value) FilterConds {
+	c[filed] = &npool.FilterCond{
 		Op:  op,
 		Val: val,
 	}
