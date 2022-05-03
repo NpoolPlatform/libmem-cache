@@ -120,6 +120,20 @@ func AnyTypeUint32(v Any) (uint32, error) {
 	return 0, fmt.Errorf("invalid value type: %v (uint32)", reflect.TypeOf(v))
 }
 
+func AnyTypeFloat64(v Any) (float64, error) {
+	switch v.(type) {
+	case uint32:
+		return float64(v.(uint32)), nil
+	case int32:
+		return float64((v.(int32))), nil
+	case int:
+		return float64((v.(int))), nil
+	case float64:
+		return v.(float64), nil
+	}
+	return 0, fmt.Errorf("invalid value type: %v (float64)", reflect.TypeOf(v))
+}
+
 func AnyTypeUUID(v Any) (uuid.UUID, error) {
 	if _, ok := v.(uuid.UUID); ok {
 		return v.(uuid.UUID), nil
