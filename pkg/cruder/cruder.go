@@ -143,3 +143,10 @@ func AnyTypeUUID(v Any) (uuid.UUID, error) {
 	}
 	return uuid.Parse(v.(string))
 }
+
+func AnyTypeString(v Any) (string, error) {
+	if _, ok := v.(string); !ok {
+		return "", fmt.Errorf("invalid value type: %v (uuid)", reflect.TypeOf(v))
+	}
+	return v.(string), nil
+}
