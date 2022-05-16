@@ -146,7 +146,7 @@ func AnyTypeUUID(v Any) (uuid.UUID, error) {
 
 func AnyTypeString(v Any) (string, error) {
 	if _, ok := v.(string); !ok {
-		return "", fmt.Errorf("invalid value type: %v (uuid)", reflect.TypeOf(v))
+		return "", fmt.Errorf("invalid value type: %v (string)", reflect.TypeOf(v))
 	}
 	return v.(string), nil
 }
