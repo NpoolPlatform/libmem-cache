@@ -17,6 +17,7 @@ const (
 	EQ   = "eq"
 	GT   = "gt"
 	LT   = "lt"
+	IN   = "in"
 	LIKE = "like"
 )
 
