@@ -154,7 +154,7 @@ func AnyTypeUUIDs(v Any) ([]uuid.UUID, error) {
 	}
 	uuids := []uuid.UUID{}
 	for _, val := range v.([]string) {
-		uuidP, err := uuid.Parse(val)
+		uuidP, err := AnyTypeUUID(val)
 		if err != nil {
 			return nil, err
 		}
