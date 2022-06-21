@@ -145,6 +145,24 @@ func AnyTypeUUID(v Any) (uuid.UUID, error) {
 	return uuid.Parse(v.(string))
 }
 
+func AnyTypeUUIDs(v Any) ([]uuid.UUID, error) {
+	if _, ok := v.([]uuid.UUID); ok {
+		return v.([]uuid.UUID), nil
+	}
+	if _, ok := v.([]string); !ok {
+		return []uuid.UUID{}, fmt.Errorf("invalid value type: %v ([]uuid)", reflect.TypeOf(v))
+	}
+	uuids := []uuid.UUID{}
+	for _, val := range v.([]string) {
+		uuidP, err := AnyTypeUUID(val)
+		if err != nil {
+			return nil, err
+		}
+		uuids = append(uuids, uuidP)
+	}
+	return uuids, nil
+}
+
 func AnyTypeString(v Any) (string, error) {
 	if _, ok := v.(string); !ok {
 		return "", fmt.Errorf("invalid value type: %v (string)", reflect.TypeOf(v))
